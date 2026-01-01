@@ -1,0 +1,19 @@
+# Rust
+target/
+Cargo.lock
+
+# Slint build artifacts
+build/
+cmake-build-*/
+
+# IDE
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
