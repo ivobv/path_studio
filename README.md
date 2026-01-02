@@ -1,44 +1,43 @@
+# Svelte + Vite
 
+This template should help get you started developing with Svelte in Vite.
 
-Path Studio is a lightweight, maker‑friendly application designed to help people create CNC and laser toolpaths with clarity and comfort. The goal is to build a tool that feels simple for beginners, yet powerful enough for advanced users who want precision and control.
+## Recommended IDE Setup
 
-Path Studio focuses on three things:
+[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
-- **clean design**: an interface that stays out of the way and lets you focus on your work  
-- **modular structure**: every part of the app is built to grow without becoming complicated  
-- **accessibility for makers**: clear workflows, readable UI, and a smooth learning curve  
-- **cross‑platform support**: built with Rust and Slint to run smoothly on Linux, Windows, and macOS  
+## Need an official Svelte framework?
 
----
+Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
 
-## **What Path Studio aims to solve**
+## Technical considerations
 
-Many CNC and laser tools feel heavy, confusing, or overloaded with features. Path Studio takes a different approach:
+**Why use this over SvelteKit?**
 
-- **simple onboarding**  
-- **clear toolpath creation**  
-- **fast, native performance**  
-- **a foundation that can expand over time**  
+- It brings its own routing solution which might not be preferable for some users.
+- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
 
-The long‑term vision is to create a tool that feels like home for makers — something you can open, understand, and use without frustration.
+This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
 
----
+Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
 
-## **Current state**
+**Why include `.vscode/extensions.json`?**
 
-Path Studio is in early development. The project currently includes:
+Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
 
-- **a native Rust + Slint UI**  
-- **a modular app structure**  
-- **a clean foundation for future features**  
-- **cross‑platform builds planned from the start**  
+**Why enable `checkJs` in the JS template?**
 
----
+It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
 
-## **Why this project exists**
+**Why is HMR not preserving my local component state?**
 
-Path Studio is built with a simple belief:  
-**creative tools should feel good to use.**
+HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
 
-The goal is to make CNC and laser workflows accessible to everyone — from hobbyists to professionals — without sacrificing clarity or power.
+If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
 
+```js
+// store.js
+// An extremely simple external store
+import { writable } from 'svelte/store'
+export default writable(0)
+```
