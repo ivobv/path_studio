@@ -21,10 +21,11 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Build project
-        run: cargo build --release
+        run: cargo build --release --manifest-path app/Cargo.toml
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: path_studio-${{ matrix.os }}
-          path: target/release/
+          path: app/target/release/
+
